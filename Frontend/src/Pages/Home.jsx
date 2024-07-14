@@ -51,16 +51,16 @@ function Home() {
     fetchPosts()
   }, [search])
 
-  // useEffect(() => {
-  //   getUser()
+  useEffect(() => {
+    getUser()
 
-  // }, [])
+  }, [])
   const getUser = async () => {
     try {
       const res = await axios.get(URL + "/api/auth/refetch", { withCredentials: true })
       // console.log(res.data)
       localStorage.setItem("user", JSON.stringify(res.data));
-      window.location = "/";
+      // window.location = "/";
 
     }
     catch (err) {

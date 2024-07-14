@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
         }
         const token = jwt.sign({ _id: user._id, username: user.username, email: user.email }, process.env.SECRET, { expiresIn: "7d" })
         const { password, ...info } = user._doc;
-res.cookie("token", token, { httpOnly: true, path: '/' })
+res.cookie("token", token, { httpOnly: true })
    .status(200)
    .json(info);
 

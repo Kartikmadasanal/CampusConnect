@@ -37,7 +37,7 @@ function Login() {
       const res = await axios.post(URL + "/api/auth/login", Userdata, { withCredentials: true })
 
       localStorage.setItem("user", JSON.stringify(res.data));
-      // window.location = "/";
+      window.location = "/";
       // navigate("/")
 
     }

@@ -62,9 +62,7 @@ router.post("/login", async (req, res) => {
         }
         const token = jwt.sign({ _id: user._id, username: user.username, email: user.email }, process.env.SECRET, { expiresIn: "7d" })
         const { password, ...info } = user._doc;
-res.cookie("token", token, { httpOnly: true })
-   .status(200)
-   .json(info);
+        res.json({ status: "ok", data: token , user:info });
 
 
     }
@@ -88,7 +86,7 @@ router.get("/logout", async (req, res) => {
 
 //REFETCH USER
 router.get("/refetch", (req, res) => {
-    const token = req.cookies.token
+    const token = req.params.token
     jwt.verify(token, process.env.SECRET, (err, data) => {
 
         if (err) {
